@@ -11,6 +11,17 @@
   # System configuration
   networking.hostName = "nixos-server";
 
+  # Mount TrueNAS Plex share via NFS (read-only)
+  # nofail: Continue boot even if mount fails
+  fileSystems."/mnt/truenas/plex" = {
+    device = "192.168.0.55:/mnt/main-pool/plex";
+    fsType = "nfs";
+    options = [
+      "ro"
+      "nofail"
+    ];
+  };
+
   services.openssh = {
     enable = true;
     openFirewall = true;
