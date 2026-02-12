@@ -1,6 +1,9 @@
 { config, modulesPath, pkgs, lib, ... }:
 {
-  imports = [ ./proxmox.nix ];
+  imports = [
+    ./proxmox.nix
+    ./containers/plex.nix
+  ];
 
   # Nix configuration
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -41,6 +44,12 @@
 
   # Enable Tailscale VPN
   services.tailscale.enable = true;
+
+  # Open firewall ports
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 32400 ];  # Plex
+  };
 
   users.users.joemitz = {
     isNormalUser = true;
