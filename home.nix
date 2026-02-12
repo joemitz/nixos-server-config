@@ -4,15 +4,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
-  home-manager.users.root = {
-    home.stateVersion = "25.11";
-    home.packages = [
-      claude-code.packages.x86_64-linux.default
-      pkgs.gh
-      pkgs.jq
-    ];
-  };
-
   home-manager.users.joemitz = {
     home.stateVersion = "25.11";
     home.packages = [
