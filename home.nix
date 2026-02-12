@@ -1,4 +1,4 @@
-{ nixpkgs, claude-code, ... }:
+{ pkgs, claude-code, ... }:
 
 {
   home-manager.useGlobalPkgs = true;
@@ -8,6 +8,8 @@
     home.stateVersion = "25.11";
     home.packages = [
       claude-code.packages.x86_64-linux.default
+      pkgs.gh
+      pkgs.jq
     ];
   };
 
@@ -15,12 +17,14 @@
     home.stateVersion = "25.11";
     home.packages = [
       claude-code.packages.x86_64-linux.default
+      pkgs.gh
+      pkgs.jq
     ];
 
     # Git configuration
     programs.git = {
       enable = true;
-      package = nixpkgs.legacyPackages.x86_64-linux.gitFull;
+      package = pkgs.gitFull;
       settings = {
         user = {
           name = "Joe Mitzman";
@@ -35,7 +39,7 @@
           hooksPath = "/dev/null";
         };
         push.autoSetupRemote = true;
-        credential."https://github.com".helper = "!${nixpkgs.legacyPackages.x86_64-linux.gh}/bin/gh auth git-credential";
+        credential."https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
         alias = {
           co = "commit -m";
           st = "status";

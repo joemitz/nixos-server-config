@@ -12,10 +12,11 @@
   outputs = { nixpkgs, home-manager, claude-code, ... }: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit claude-code; };
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
-        (import ./home.nix { inherit nixpkgs claude-code; })
+        ./home.nix
       ];
     };
   };

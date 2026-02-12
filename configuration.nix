@@ -11,13 +11,6 @@
   # System configuration
   networking.hostName = "nixos-server";
 
-  # System packages
-  environment.systemPackages = with pkgs; [
-    git
-    gh
-    jq
-  ];
-  
   services.openssh = {
     enable = true;
     openFirewall = true;
