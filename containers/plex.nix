@@ -8,7 +8,7 @@
   # Media bind mounted from /mnt/truenas/plex/* to /{movies,tv,...}
 
   containers.plex = {
-    autoStart = true;
+    autoStart = false;
     ephemeral = true;  # Container starts fresh each boot, data persists via bind mounts
     privateNetwork = false;  # Use host network (like Docker's network_mode: host)
 
